@@ -1,6 +1,6 @@
 # Dotfiles
 
-Clone & create symbolic links
+### Vim
 ```
 ln -s ~/.dotfiles/.vim ~/.vim
 cd ~/.vim
