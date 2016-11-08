@@ -1,0 +1,105 @@
+set nocompatible
+set encoding=utf-8
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+set t_Co=256
+set background=dark
+colorscheme hybrid
+
+set hidden
+set colorcolumn=80
+set laststatus=2
+set linespace=8
+set history=10000
+set noshowmode
+set nobackup
+set number
+set showcmd
+set showmatch
+set title
+set ttyfast
+set autoread
+set formatoptions-=cro  " auto-commenting behavior
+set pastetoggle=<F2>  " paste mode toggle
+set listchars=tab:>-,space:·,extends:>,precedes:<,trail:~
+
+" highlight trailing space
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+set list
+
+" folding
+set foldignore=
+set foldlevelstart=99
+set foldmethod=indent
+set foldnestmax=10
+
+" indentation
+set autoindent
+set expandtab
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set tabstop=4
+
+autocmd FileType c,make setlocal noexpandtab shiftwidth=8 softtabstop=8 tabstop=8
+autocmd FileType typescript,javascript,json,less,ruby,sass,scss,sql,vim,zsh setlocal shiftwidth=2 softtabstop=2 tabstop=2
+
+" search
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+
+" mappings
+
+" let mapleader= ","
+
+" disable scroll wheel
+map <ScrollWheelUp> <Nop>
+map <S-ScrollWheelUp> <Nop>
+map <ScrollWheelDown> <Nop>
+map <S-ScrollWheelDown> <Nop>
+
+" disable arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+
+"s Exit insert mode.
+inoremap jj <esc>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Plugins
+
+" vim-ctrlspace
+set showtabline=0
+" nnoremap <silent><C-p> :CtrlSpace O<CR>
+
+" vim-ctrlp
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+" vim-gitgutter
+set updatetime=250
+
+" vim-airline
+let g:airline_powerline_fonts=1
+let g:airline_theme='distinguished'
+
+" editorconfig-vim
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
